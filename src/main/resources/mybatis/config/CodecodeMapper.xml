@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+ <mapper namespace="CodecodeMapper">
+	
+	<!--查询结果列 -->
+	<sql id="selectCodecodeCloumns">
+		id,
+		type,
+		typeName,
+		code,
+		codeName,
+		validInd,
+		remark,
+		createTime,
+		lastUpdate
+	</sql>
+	 
+	<!-- 新增-->
+	<insert id="save" parameterType="com.wsh.domain.dto.CodecodeDto" >
+		insert into codecode(
+			id,
+			type,
+			typeName,
+			code,
+			codeName,
+			validInd,
+			remark,
+			createTime,
+			lastUpdate
+		) values (
+			#{id},
+			#{type},
+			#{typeName},
+			#{code},
+			#{codeName},
+			#{validInd},
+			#{remark},
+			#{createTime},
+			#{lastUpdate}
+		)
+	</insert>
+	
+	<!--根据主键删除-->
+	<delete id="deleteById" parameterType="com.wsh.domain.dto.CodecodeDto">
+		delete from codecode
+		where id = #{id}
+	
+	</delete>
+	
+	<!-- 修改 -->
+	<update id="editById" parameterType="com.wsh.domain.dto.CodecodeDto">
+		update  codecode set
+	<if test="type !=null and type != ''"> 
+		type = #{type},
+	</if>
+	<if test="typeName !=null and typeName != ''"> 
+		typeName = #{typeName},
+	</if>
+	<if test="code !=null and code != ''"> 
+		code = #{code},
+	</if>
+	<if test="codeName !=null and codeName != ''"> 
+		codeName = #{codeName},
+	</if>
+	<if test="validInd !=null and validInd != ''"> 
+		validInd = #{validInd},
+	</if>
+	<if test="remark !=null and remark != ''"> 
+		remark = #{remark},
+	</if>
+	<if test="createTime !=null "> 
+		<![CDATA[ createTime = #{createTime},]]>
+	</if>
+	<if test="lastUpdate !=null "> 
+		<![CDATA[ lastUpdate = #{lastUpdate},]]>
+	</if>
+	
+		 id = #{id}  
+	
+		where id = #{id}
+	</update>
+	
+	
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="com.wsh.domain.dto.CodecodeDto" resultType="com.wsh.domain.dto.CodecodeDto">
+		select 
+			<include refid="selectCodecodeCloumns" />
+		from  codecode
+		where id = #{id}
+	</select>
+	
+	
+	<!-- 列表查询 -->
+	<select id="list" parameterType="com.wsh.domain.dto.CodecodeDto" resultType="com.wsh.domain.dto.CodecodeDto">
+		select
+			<include refid="selectCodecodeCloumns" />
+		from  codecode
+		<!--查询条件-->
+		where 1 = 1 
+		<if test="id !=null ">  
+			and id = #{id}
+		</if>
+		<if test="type !=null and type != ''">  
+			and type = #{type}
+		</if>
+		<if test="typeName !=null and typeName != ''">  
+			and typeName = #{typeName}
+		</if>
+		<if test="code !=null and code != ''">  
+			and code = #{code}
+		</if>
+		<if test="codeName !=null and codeName != ''">  
+			and codeName = #{codeName}
+		</if>
+		<if test="validInd !=null and validInd != ''">  
+			and validInd = #{validInd}
+		</if>
+		<if test="remark !=null and remark != ''">  
+			and remark = #{remark}
+		</if>
+		<if test="createTime !=null ">  
+			and <![CDATA[ createTime = #{createTime}]]>
+		</if>
+		<if test="lastUpdate !=null ">  
+			and <![CDATA[ lastUpdate = #{lastUpdate}]]>
+		</if>
+	</select>
+	
+	<!-- 分页查询 -->
+	<select id="page" parameterType="com.wsh.domain.dto.CodecodeDto" resultType="com.wsh.domain.dto.CodecodeDto">
+		select
+			<include refid="selectCodecodeCloumns" />
+		from  codecode
+		<!--查询条件-->
+		where 1 = 1 
+		<if test="id !=null ">  
+			and id = #{id}
+		</if>
+		<if test="type !=null and type != ''">  
+			and type = #{type}
+		</if>
+		<if test="typeName !=null and typeName != ''">  
+			and typeName = #{typeName}
+		</if>
+		<if test="code !=null and code != ''">  
+			and code = #{code}
+		</if>
+		<if test="codeName !=null and codeName != ''">  
+			and codeName = #{codeName}
+		</if>
+		<if test="validInd !=null and validInd != ''">  
+			and validInd = #{validInd}
+		</if>
+		<if test="remark !=null and remark != ''">  
+			and remark = #{remark}
+		</if>
+		<if test="createTime !=null ">  
+			and <![CDATA[ createTime = #{createTime}]]>
+		</if>
+		<if test="lastUpdate !=null ">  
+			and <![CDATA[ lastUpdate = #{lastUpdate}]]>
+		</if>
+	</select>
+	
+</mapper>
