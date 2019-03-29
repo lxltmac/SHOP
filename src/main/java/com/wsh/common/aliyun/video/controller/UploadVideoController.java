@@ -3,7 +3,7 @@ package com.wsh.common.aliyun.video.controller;
 //
 //import com.alibaba.fastjson.JSONObject;
 //import com.wsh.common.aliyun.domain.dto.UploadVideoInfo;
-//import com.wsh.common.aliyun.service.UploadVideoService;
+//import com.wsh.common.aliyun.services.UploadVideoService;
 //import com.wsh.common.base.ResponseResult;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.RequestBody;

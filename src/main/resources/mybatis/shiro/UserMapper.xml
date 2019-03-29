@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserMapper">
+
+    <!--查询结果列 -->
+    <sql id="selectUsersCloumns">
+        user_id,
+        user_name,
+        password,
+        email,
+        phone,
+        salt,
+        status,
+        create_time,
+        update_time
+    </sql>
+
+    <!-- 新增-->
+    <insert id="save" parameterType="com.wsh.shiro.domain.dto.UserDto" useGeneratedKeys="true" keyProperty="id">
+        insert into user(
+          user_id,
+          user_name,
+          password,
+          email,
+          phone,
+          salt,
+          status,
+          create_time,
+          update_time
+        ) values (
+          #{user_id},
+          #{user_name},
+          #{password},
+          #{email},
+          #{phone},
+          #{salt},
+          #{status},
+          #{create_time},
+          #{update_time}
+        )
+    </insert>
+
+    <!--根据主键删除-->
+    <delete id="deleteById" parameterType="com.wsh.shiro.domain.dto.UserDto">
+		delete from user
+		where id = #{id}
+	</delete>
+
+    <!-- 修改 -->
+    <update id="editById" parameterType="com.wsh.shiro.domain.dto.UserDto">
+        update user set
+        <if test="user_id !=null">
+            user_id = #{user_id},
+        </if>
+        <if test="user_name !=null and user_name != ''">
+            user_name = #{user_name},
+        </if>
+        <if test="password !=null and password != ''">
+            password = #{password},
+        </if>
+        <if test="email !=null and email != ''">
+            email = #{email},
+        </if>
+        <if test="phone !=null and phone != ''">
+            phone = #{phone},
+        </if>
+        <if test="salt !=null and salt != ''">
+            salt = #{salt},
+        </if>
+        <if test="status !=null">
+            status = #{status},
+        </if>
+        <if test="create_time !=null">
+            <![CDATA[create_time = #{create_time},]]>
+        </if>
+        <if test="update_time !=null">
+            <![CDATA[update_time = #{update_time},]]>
+        </if>
+        id = #{id}
+
+        where id = #{id}
+    </update>
+
+    <!-- 通过ID获取数据 -->
+    <select id="findById" parameterType="com.wsh.shiro.domain.dto.UserDto" resultType="com.wsh.shiro.domain.dto.UserDto">
+        select
+        <include refid="selectUsersCloumns" />
+        from  user
+        where id = #{id}
+    </select>
+
+    <!-- 列表查询 -->
+    <select id="list" parameterType="com.wsh.shiro.domain.dto.UserDto" resultType="com.wsh.shiro.domain.dto.UserDto">
+        select
+        <include refid="selectUsersCloumns" />
+        from  user
+        <!--查询条件-->
+        where 1 = 1
+        <if test="user_id !=null">
+            and user_id = #{user_id}
+        </if>
+        <if test="user_name !=null and user_name != ''">
+            and user_name = #{user_name}
+        </if>
+        <if test="password !=null and password != ''">
+            and password = #{password}
+        </if>
+        <if test="email !=null and email != ''">
+            and email = #{email}
+        </if>
+        <if test="phone !=null and phone != ''">
+            and phone = #{phone}
+        </if>
+        <if test="salt !=null and salt != ''">
+            and salt = #{salt}
+        </if>
+        <if test="status !=null">
+            and status = #{status}
+        </if>
+        <if test="create_time !=null">
+            and <![CDATA[create_time = #{create_time}]]>
+        </if>
+        <if test="update_time !=null">
+            and <![CDATA[update_time = #{update_time}]]>
+        </if>
+    </select>
+
+    <!-- 分页查询 -->
+    <select id="page" parameterType="com.wsh.shiro.domain.dto.UserDto" resultType="com.wsh.shiro.domain.dto.UserDto">
+        select
+        <include refid="selectUsersCloumns" />
+        from  user
+        <!--查询条件-->
+        where 1 = 1
+        <if test="user_id !=null">
+            and user_id = #{user_id}
+        </if>
+        <if test="user_name !=null and user_name != ''">
+            and user_name = #{user_name}
+        </if>
+        <if test="password !=null and password != ''">
+            and password = #{password}
+        </if>
+        <if test="email !=null and email != ''">
+            and email = #{email}
+        </if>
+        <if test="phone !=null and phone != ''">
+            and phone = #{phone}
+        </if>
+        <if test="salt !=null and salt != ''">
+            and salt = #{salt}
+        </if>
+        <if test="status !=null">
+            and status = #{status}
+        </if>
+        <if test="create_time !=null">
+            and <![CDATA[create_time = #{create_time}]]>
+        </if>
+        <if test="update_time !=null">
+            and <![CDATA[update_time = #{update_time}]]>
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="RolePermissionMapper">
+
+    <!--查询结果列 -->
+    <sql id="selectRolePermissionCloumns">
+        id,
+        role_id,
+        permission_id
+    </sql>
+
+    <!-- 新增-->
+    <insert id="save" parameterType="com.wsh.shiro.domain.dto.RolePermissionDto" useGeneratedKeys="true" keyProperty="id">
+        insert into rolePermission(
+          id,
+          role_id,
+          permission_id
+        ) values (
+          #{id},
+          #{role_id},
+          #{permission_id}
+        )
+    </insert>
+
+    <!--根据主键删除-->
+    <delete id="deleteById" parameterType="com.wsh.shiro.domain.dto.RolePermissionDto">
+		delete from rolePermission
+		where id = #{id}
+	</delete>
+
+    <delete id="deleteRolePermissionByRoleId" parameterType="com.wsh.shiro.domain.dto.RolePermissionDto">
+		DELETE FROM
+			rolePermission
+		WHERE
+			role_id = #{roleId}
+	</delete>
+
+    <!-- 修改 -->
+    <update id="editById" parameterType="com.wsh.shiro.domain.dto.RolePermissionDto">
+        update rolePermission set
+        <if test="id !=null">
+            id = #{id},
+        </if>
+        <if test="role_id !=null">
+            role_id = #{role_id},
+        </if>
+        <if test="permission_id !=null">
+            permission_id = #{permission_id},
+        </if>
+        id = #{id}
+
+        where id = #{id}
+    </update>
+
+    <!-- 通过ID获取数据 -->
+    <select id="findById" parameterType="com.wsh.shiro.domain.dto.RolePermissionDto" resultType="com.wsh.shiro.domain.dto.RolePermissionDto">
+        select
+        <include refid="selectRolePermissionCloumns" />
+        from  rolePermission
+        where id = #{id}
+    </select>
+
+    <!-- 列表查询 -->
+    <select id="list" parameterType="com.wsh.shiro.domain.dto.RolePermissionDto" resultType="com.wsh.shiro.domain.dto.RolePermissionDto">
+        select
+        <include refid="selectRolePermissionCloumns" />
+        from  rolePermission
+        <!--查询条件-->
+        where 1 = 1
+        <if test="id !=null">
+            and id = #{id}
+        </if>
+        <if test="role_id !=null">
+            and role_id = #{role_id}
+        </if>
+        <if test="permission_id !=null">
+            and permission_id = #{permission_id}
+        </if>
+    </select>
+
+    <!-- 分页查询 -->
+    <select id="page" parameterType="com.wsh.shiro.domain.dto.RolePermissionDto" resultType="com.wsh.shiro.domain.dto.RolePermissionDto">
+        select
+        <include refid="selectRolePermissionCloumns" />
+        from  rolePermission
+        <!--查询条件-->
+        where 1 = 1
+        <if test="id !=null">
+            and id = #{id}
+        </if>
+        <if test="role_id !=null">
+            and role_id = #{role_id}
+        </if>
+        <if test="permission_id !=null">
+            and permission_id = #{permission_id}
+        </if>
+    </select>
+
+    <select id="getPermissionListByRoleId" parameterType="com.wsh.shiro.domain.dto.RolePermissionDto" resultType="com.wsh.shiro.domain.dto.RolePermissionDto">
+		SELECT
+			permission_id
+		FROM
+			rolePermission
+		WHERE
+			role_id = #{roleId}
+	</select>
+
+
+</mapper>

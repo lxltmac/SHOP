@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="RoleMapper">
+
+    <!--查询结果列 -->
+    <sql id="selectRoleCloumns">
+        role_id,
+        name,
+        descr
+    </sql>
+
+    <!-- 新增-->
+    <insert id="save" parameterType="com.wsh.shiro.domain.dto.RoleDto" useGeneratedKeys="true" keyProperty="id">
+        insert into role(
+          role_id,
+          name,
+          descr
+        ) values (
+          #{role_id},
+          #{name},
+          #{descr}
+        )
+    </insert>
+
+    <!--根据主键删除-->
+    <delete id="deleteById" parameterType="com.wsh.shiro.domain.dto.RoleDto">
+		delete from role
+		where role_id = #{role_id}
+	</delete>
+
+    <!-- 修改 -->
+    <update id="editById" parameterType="com.wsh.shiro.domain.dto.RoleDto">
+        update role set
+        <if test="role_id !=null">
+            role_id = #{role_id},
+        </if>
+        <if test="name !=null and name != ''">
+            name = #{name},
+        </if>
+        <if test="descr !=null and descr != ''">
+            descr = #{descr},
+        </if>
+        id = #{id}
+
+        where id = #{id}
+    </update>
+
+    <!-- 通过ID获取数据 -->
+    <select id="findById" parameterType="com.wsh.shiro.domain.dto.RoleDto" resultType="com.wsh.shiro.domain.dto.RoleDto">
+        select
+        <include refid="selectRoleCloumns" />
+        from  role
+        where id = #{id}
+    </select>
+
+    <!-- 列表查询 -->
+    <select id="list" parameterType="com.wsh.shiro.domain.dto.RoleDto" resultType="com.wsh.shiro.domain.dto.RoleDto">
+        select
+        <include refid="selectRoleCloumns" />
+        from  role
+        <!--查询条件-->
+        where 1 = 1
+        <if test="role_id !=null">
+            and role_id = #{role_id}
+        </if>
+        <if test="name !=null and name != ''">
+            and name = #{name}
+        </if>
+        <if test="descr !=null and descr != ''">
+            and descr = #{descr}
+        </if>
+    </select>
+
+    <!-- 分页查询 -->
+    <select id="page" parameterType="com.wsh.shiro.domain.dto.RoleDto" resultType="com.wsh.shiro.domain.dto.RoleDto">
+        select
+        <include refid="selectRoleCloumns" />
+        from  role
+        <!--查询条件-->
+        where 1 = 1
+        <if test="role_id !=null">
+            and role_id = #{role_id}
+        </if>
+        <if test="name !=null and name != ''">
+            and name = #{name}
+        </if>
+        <if test="descr !=null and descr != ''">
+            and descr = #{descr}
+        </if>
+    </select>
+</mapper>

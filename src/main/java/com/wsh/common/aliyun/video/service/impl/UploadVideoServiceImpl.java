@@ -1,12 +1,12 @@
 package com.wsh.common.aliyun.video.service.impl;
-//package com.wsh.common.aliyun.service.impl;
+//package com.wsh.common.aliyun.services.impl;
 //
 //import com.alibaba.fastjson.JSON;
 //import com.alibaba.fastjson.JSONObject;
 //import com.aliyun.vod.upload.req.UploadStreamRequest;
 //import com.aliyun.vod.upload.resp.*;
 //import com.wsh.common.aliyun.domain.dto.UploadVideoInfo;
-//import com.wsh.common.aliyun.service.UploadVideoService;
+//import com.wsh.common.aliyun.services.UploadVideoService;
 //import com.wsh.common.helper.ServiceConfigHelper;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;

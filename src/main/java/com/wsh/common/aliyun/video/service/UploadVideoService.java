@@ -1,5 +1,5 @@
 package com.wsh.common.aliyun.video.service;
-//package com.wsh.common.aliyun.service;
+//package com.wsh.common.aliyun.services;
 //
 //import com.alibaba.fastjson.JSONObject;
 //import com.wsh.common.aliyun.domain.dto.UploadVideoInfo;
